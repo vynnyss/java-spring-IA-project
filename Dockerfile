@@ -1,14 +1,18 @@
-# Usa imagem com JDK 21
-FROM eclipse-temurin:21-jdk-alpine
+FROM eclipse-temurin:21-jdk-alpine AS build
 
-# Define o diretório de trabalho dentro do container
 WORKDIR /src/main/java
 
-# Copia o JAR gerado para dentro da imagem (ajustado conforme o nome do JAR)
-COPY build/libs/*.jar app.jar
+# Copia os arquivos do projeto para dentro da imagem
+COPY . .
 
-# Expõe a porta padrão do Spring Boot
-EXPOSE 8080
+# Usa o Gradle wrapper (ou substitua por `./gradlew build` se tiver wrapper no projeto)
+RUN ./gradlew build --no-daemon
 
-# Comando de inicialização
+# Fase final: cria uma imagem leve com o JAR compilado
+FROM eclipse-temurin:21-jdk-alpine
+
+WORKDIR /app
+
+COPY --from=build /app/build/libs/*.jar app.jar
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
