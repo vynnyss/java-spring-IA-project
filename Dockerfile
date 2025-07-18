@@ -5,6 +5,9 @@ WORKDIR /src/main/java
 # Copia os arquivos do projeto para dentro da imagem
 COPY . .
 
+# ⚠️ Dá permissão de execução ao gradlew
+RUN chmod +x ./gradlew
+
 # Usa o Gradle wrapper (ou substitua por `./gradlew build` se tiver wrapper no projeto)
 RUN ./gradlew build --no-daemon
 
