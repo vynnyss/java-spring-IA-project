@@ -1,6 +1,6 @@
 FROM eclipse-temurin:21-jdk-alpine AS build
 
-WORKDIR /src/main/java
+WORKDIR /app
 
 # Copia os arquivos do projeto para dentro da imagem
 COPY . .
