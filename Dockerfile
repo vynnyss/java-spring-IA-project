@@ -8,6 +8,10 @@ COPY . .
 # ⚠️ Dá permissão de execução ao gradlew
 RUN chmod +x ./gradlew
 
+# Define variáveis fictícias de ambiente para evitar falhas nos testes
+ENV OPENAI_API_KEY=dummy-key-for-test
+ENV GEMINI_API_KEY=dummy-key-for-test
+
 # Usa o Gradle wrapper (ou substitua por `./gradlew build` se tiver wrapper no projeto)
 RUN ./gradlew build --no-daemon
 
