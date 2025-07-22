@@ -22,4 +22,4 @@ WORKDIR /app
 
 COPY --from=build /app/build/libs/*.jar ./
 
-ENTRYPOINT ["java", "-jar", "sdw24-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["sh", "-c", "java -jar app.jar --server.port=${PORT}"]
