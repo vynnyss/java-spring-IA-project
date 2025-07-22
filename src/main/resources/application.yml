@@ -18,5 +18,3 @@ gemini:
   api-key: ${GEMINI_API_KEY}
 generative-ai:
   provider: gemini
-server:
-  port: 8080
