@@ -18,4 +18,3 @@ gemini:
   api-key: ${GEMINI_API_KEY}
 generative-ai:
   provider: gemini
-server-url: ${SWAGGER_SERVER_URL:}
